@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trip</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        main {
+
+        }
+        footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+            {% for message in messages %}
+            <h4>{{message}}</h4>
+            {% endfor %}
+        </header>
+
+        <main>
+            <h3>Edit Your Trip!</h3><br>
+            <br>
+            <form action="/trips/{{trip.id}}/update" method="POST">
+                {% csrf_token %}
+                Destination : <input type="text" name="trip_destination" value="{{trip.destination}}"><br>
+                <br>
+                Start Date : <input type="date" name="trip_start_date" value='{{trip.start_date|date:"Y-m-d"}}'><br>
+                <br>
+                End Date : <input type="date" name="trip_end_date" value='{{trip.end_date|date:"Y-m-d"}}'><br>
+                <br>
+                Plan : <textarea name="trip_plan" cols="30" rows="10">{{trip.plan}}</textarea><br>
+                <br>
+                <input type="submit">
+                <a href="/trips">Cancel</a>
+            </form>
+        </main>
+
+        <footer>
+            <a href="/users/logout">Logout</a>
+        </footer>
+
+    </div>
+    
+</body>
+
+</html>

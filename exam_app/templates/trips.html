@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trips</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        main {
+
+        }
+        footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <header>
+            {% for message in messages %}
+            <h4>{{message}}</h4>
+            {% endfor %}
+        </header>
+
+        <main>
+            <h3>Hello {{request.session.first_name}}!</h3><br>
+            <a href="/trips/new">Create a new trip!</a><br>
+            <br>
+            <p>Your Trips :</p>
+            <table>
+                <thead>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </thead>
+                <br>
+            
+                {% for trip in trips %}
+                <tr>
+                    {% if user == trip.admin %}
+                    <td><a href="/trips/{{trip.id}}">{{trip.destination}}</a></td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.plan}}</td>
+                    <td><a href="/trips/{{trip.id}}/edit">Edit</a></td>
+                    <td><a href="/trips/{{trip.id}}/remove">Remove</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </main>
+
+        <footer>
+            <a href="/users/logout">Logout</a>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

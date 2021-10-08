@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Information</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        #wrapper {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: whitesmoke;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+        }
+        main {
+
+        }
+        footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <header>
+            <a href="/trips">Dashboard</a>
+        </header>
+
+        <main>
+            <h3>Hello {{request.session.first_name}}, read about your trip!</h3><br>
+            <h4>{{trip.destination}}</h4><br>
+            <p>Start Date : {{trip.start_date}}</p><br>
+            <p>End Date : {{trip.end_date}}</p><br>
+            <p>Creadted On: {{trip.created_at}}</p><br>
+            <p>Updated On: {{trip.updated_at}}</p><br>
+            <p>Trip Plan : {{trip.plan}}</p><br>
+            <p>Trip Admin : {{trip.admin.first_name}} {{trip.admin.last_name}}</p>
+        </main>
+
+        <footer>
+            <a href="/users/logout">Logout</a>
+        </footer>
+
+    </div>
+    
+</body>
+
+</html>
